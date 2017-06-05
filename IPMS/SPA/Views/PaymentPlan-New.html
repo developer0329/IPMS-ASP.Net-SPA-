@@ -1,0 +1,180 @@
+﻿<div class="container">
+
+    <script type="text/ng-template" id="planConfirmModal.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">Confirm New Plan</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in dueList">
+                        <td>{{item.date}}</td>
+                        <td>{{item.value}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="cancel()">Cancel</button>
+            <button class="btn btn-warning" type="button" ng-click="ok()">Confirm & Save </button>
+        </div>
+    </script>
+
+    <div class="row">
+        <h2>Add new payment plan</h2>
+    </div>
+    <hr />
+    <form class="form-horizontal" id="NewPaymentPlanForm" name="planForm"
+          ng-submit="submitForm(planForm.$valid)" novalidate>
+        <div class="form-group">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>Invoice No</label>
+                    <input class="form-control" type="text" name="invoice_no"
+                           ng-model="plan.invoice_no" ng-required="true" required>
+
+                </div>
+                <div class="form-group">
+                    <label>Date of Contract</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup
+                               ng-model="plan.contract_date" is-open="contractDatePopup.opened"
+                               datepicker-options="dateOptions" ng-required="true"
+                               close-text="Close" required />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="contractDateOpen()">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>Customer</label>
+
+                    <md-autocomplete md-no-cache="noCache"
+                                     md-selected-item="selectedItem"
+                                     md-search-text-change="searchTextChange(searchText)"
+                                     md-search-text="searchText"
+                                     md-selected-item-change="selectedItemChange(item)"
+                                     md-items="item in querySearch(searchText)"
+                                     md-item-text="item.display"
+                                     md-min-length="0"
+                                     placeholder="Customer Name"
+                                     ng-required="true" required>
+                        <md-item-template>
+                            <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.display}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            No states matching "{{searchText}}" were found.
+                        </md-not-found>
+                    </md-autocomplete>
+
+                    <a data-ng-click="addNewCustomer()" href="javascript:;" tooltip-placement="left" tooltip="View"
+                       class="icon-btn">
+                        <i class="glyphicon glyphicon-plus"></i>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>Device Model</label>
+                    <input class="form-control" type="text"
+                           ng-model="plan.device_model" ng-required="true" required>
+                </div>
+                <div class="form-group">
+                    <label>Serial No</label>
+                    <input class="form-control" type="text"
+                           ng-model="plan.serial_no" ng-required="true" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>Invoice Amount</label>
+                    <input class="form-control" type="number"
+                           ng-model="plan.invoice_amount" ng-required="true" required>
+                </div>
+                <div class="form-group">
+                    <label>Schedule</label>
+                    <select class="form-control" name="scheduleList" ng-model="plan.schedule"
+                            ng-options="obj.id as obj.schedule for obj in schedules"></select>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>Down Payment</label>
+                    <input class="form-control" type="number"
+                           ng-model="plan.down_payment" ng-required="true" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>Notes</label>
+                    <input class="form-control" type="text"
+                           ng-model="plan.notes" ng-required="true" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>No. of Installments</label>
+                    <input class="form-control" type="number"
+                           ng-model="plan.installment_no" ng-required="true" required>
+                </div>
+                <div class="form-group">
+                    <label>Installment Amount</label>
+                    <input class="form-control" type="number"
+                           ng-model="plan.installment_amount" ng-required="true" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label class="">First Installment Due Date</label>
+                    <!--<input class="form-control" type="text">-->
+                    <div class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup
+                               is-open="dueDatePopup.opened"
+                               datepicker-options="dateOptions" close-text="Close"
+                               ng-model="plan.first_installment_due_date" ng-required="true" required />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="dueDateOpen()">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-default" style="margin-left:200px; width:100px;">Save</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Home</title>
+
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Scripts/datatables.net/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Scripts/angular-datatables/dist/css/angular-datatables.min.css" rel="stylesheet"/>
+    <link href="~/Scripts/angular-material/angular-material.min.css" rel="stylesheet">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link href="~/css/app.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/pdf/pdfmake.min.js"></script>
+    <script src="~/Scripts/pdf/vfs_fonts.js"></script>
+
+    <script src="~/Scripts/angular-1.5.8/angular.min.js"></script>
+    <script src="~/Scripts/angular-1.5.8/angular-route.min.js"></script>
+    <script src="~/Scripts/angular-1.5.8/angular-animate.min.js"></script>
+    <script src="~/Scripts/angular-1.5.8/angular-aria.min.js"></script>
+    <script src="~/Scripts/angular-1.5.8/angular-messages.min.js"></script>
+    <script src="~/Scripts/angular-1.5.8/angular-touch.min.js"></script>
+    <script src="~/Scripts/angular-material/svg-assets-cache.js"></script>
+    <script src="~/Scripts/angular-material/angular-material.min.js"></script>
+    <script src="~/Scripts/angular-datatables/dist/angular-datatables.min.js"></script>
+    <script src="~/Scripts/ui-bootstrap-tpls.min.js"></script>
+
+    <script src="~/SPA/ApiService.js"></script>
+
+    <script src="~/SPA/Controllers/DuePaymentsMonthController.js"></script>
+    <script src="~/SPA/Controllers/NewCustomerController.js"></script>
+    <script src="~/SPA/Controllers/CustomerListController.js"></script>
+    <script src="~/SPA/Controllers/PaymentPlanDetailsController.js"></script>
+    <script src="~/SPA/Controllers/PaymentPlanNewController.js"></script>
+    <script src="~/SPA/Controllers/PaymentPlanListController.js"></script>
+    <script src="~/SPA/Controllers/DashboardController.js"></script>
+    <script src="~/SPA/Controllers/ModalInstanceCtrl.js"></script>
+    <script src="~/SPA/Controllers/MainController.js"></script>
+    <script src="~/SPA/Controllers/LoginController.js"></script>
+
+    <script src="~/SPA/App.js"></script>
+
+</head>
+<body>
+    <div ng-app="IPMS" ng-controller="MainController" style="background: white;">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ng-href="/#/dashboard">
+                    <img src="../../images/logo.png" class="logo" id="logoImg"/>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
+                <ul class="nav navbar-nav">
+                    <li><a ng-href="/#/payment_plan_new">New Payment Plan</a></li>
+                    <li><a ng-href="/#/payment_plan_list">Installment Plan</a></li>
+                    <li><a ng-href="/#/customers-list">Customers</a></li>
+                    <li><a ng-href="/#/due_payments_month">Due Payments Of The Month</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div ng-view style="padding-bottom:30px;"></div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+﻿<div class="container">
+    <div class="row">
+        <h2>Add New Customer</h2>
+    </div>
+    <hr />
+    <form class="form-horizontal" id="NewCustomerForm" name="customerForm"
+          ng-submit="submitForm(customerForm.$valid)" novalidate>
+        <div class="form-group">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>ID</label>
+                    <input class="form-control" type="text" name="id" ng-disabled="true" ng-model="customer.id">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-inline">
+                <div class="form-group"
+                     ng-class="{ 'has-error' : customerForm.name.$invalid && !customerForm.name.$pristine }">
+                    <label>Clinic Name</label>
+                    <input class="form-control" type="text" name="name" ng-model="customer.name" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>Official Tel</label>
+                    <input class="form-control" type="text" name="office-tel" ng-model="customer.office_tel">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>Address</label>
+                    <input class="form-control" type="text" name="address" ng-model="customer.address">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>Contact Person</label>
+                    <input class="form-control" type="text" name="contact_person1" ng-model="customer.contact_person1">
+                </div>
+
+                <div class="form-group">
+                    <label>Tel</label>
+                    <input class="form-control" type="text" name="contact_tel2" ng-model="customer.contact_tel1">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>Contact Person</label>
+                    <input class="form-control" type="text" name="contact_person2" ng-model="customer.contact_person2">
+                </div>
+
+                <div class="form-group">
+                    <label>Tel</label>
+                    <input class="form-control" type="text" name="contact_tel2" ng-model="customer.contact_tel2">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-inline">
+                <div class="form-group" ng-class="{ 'has-error' : customerForm.email.$invalid && !customerForm.email.$pristine }">
+                    <label>Email</label>
+                    <input class="form-control" type="email" name="email" ng-model="customer.email">
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-default" style="width:100px;">Save</button>
+        <button ng-click="cancelBtn_Click()" class="btn btn-default" style="width:100px;">Cancel</button>
+    </form>
+</div>

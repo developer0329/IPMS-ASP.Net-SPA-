@@ -1,0 +1,63 @@
+﻿<div class="container">
+    <div class="row">
+        <h2>Due payment of the month</h2>
+    </div>
+    <hr />
+    <form class="form-horizontal" id="InstallmentPlanDetailsForm"
+          name="searchForm" ng-submit="submitForm(searchForm.$valid)" novalidate>
+        <div class="form-group">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>Due Month</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                               ng-model="search.date" is-open="searchDatePopup"
+                               datepicker-options="dateOptions" ng-required="true"
+                               close-text="Close" required />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="searchDatePopupOpen()">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Pay Status</label>
+                    <select class="form-control" name="paidList" ng-model="search.paid"
+                            ng-options="obj.id as obj.status for obj in paidStatus"></select>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default" style="width:100px;margin-left:10px;">Search</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <hr />
+    <table class="table table-bordered hover" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs">
+        <thead>
+            <tr>
+                <td>Due Date</td>
+                <td>Customer</td>
+                <td>Paid Date</td>
+                <td>Value</td>
+                <td>Paid Amount</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="due in dueList">
+                <td>{{ due.due_date }}</td>
+                <td>{{ due.customer }}</td>
+                <td>{{ due.paid_date }}</td>
+                <td>{{ due.due_amount }}</td>
+                <td>{{ due.paid_amount }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <h5 style="float: left; margin-left: 20px; font-weight: bold;"> Total Due Amount : {{ total_due_amount }}</h5>
+        <button type="button" class="btn btn-default" style="width:100px; float: right; margin-right: 20px;" ng-click="printPdf();">Print PDF</button>
+        <button type="button" class="btn btn-default" style="width:100px; float: right; margin-right: 20px;" ng-click="exportCSV();">Export CSV</button>
+    </div>
+    
+</div>

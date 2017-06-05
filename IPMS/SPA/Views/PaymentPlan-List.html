@@ -1,0 +1,78 @@
+﻿<div class="container">
+    <div class="row">
+        <h2>Installment Plans</h2>
+    </div>
+    <hr />
+    <div class="row">
+        <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-bordered hover">
+            <thead>
+                <tr>
+                    <th>Invoice ID</th>
+                    <th>Customer</th>
+                    <th>Device</th>
+                    <th>Contact Date</th>
+                    <th>Due Payment Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="plan in allPlans">
+                    <td>{{ plan.invoice_no }}</td>
+                    <td>{{ plan.customer_name }}</td>
+                    <td>{{ plan.device_model }}</td>
+                    <td>{{ plan.contract_date }}</td>
+                    <td>{{ plan.first_installment_due_date }}</td>
+                    <td style="min-width: 100px;" class="action-col">
+                        <a data-ng-click="viewDetail(plan.id)" href="javascript:;">
+                            View Detail
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row" style="padding:3px 0px;">
+        <div class="col-sm-2" style="padding:7px 2px; text-align:right;">
+            Total Contracts Value
+        </div>
+        <div class="col-sm-4">
+            <div class="form-inline">
+                <div class="form-group">
+                    <input class="form-control" type="text" ng-disabled="true" ng-model="total_contract">
+                    <label>KWD</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding:3px 0px;">
+        <div class="col-sm-2" style="padding:7px 2px; text-align:right;">
+            Total Paid
+        </div>
+        <div class="col-sm-4">
+            <div class="form-inline">
+                <div class="form-group">
+                    <input class="form-control" type="text" ng-disabled="true" ng-model="total_paid">
+                    <label>KWD</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding:3px 0px;">
+        <div class="col-sm-2" style="padding:7px 2px; text-align:right;">
+            Total Due
+        </div>
+        <div class="col-sm-4">
+            <div class="form-inline">
+                <div class="form-group">
+                    <input class="form-control" type="text" ng-disabled="true" ng-model="total_due">
+                    <label>KWD</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <button type="button" class="btn btn-default" ng-click="addNewPlan()">Add new Installment Plan</button>
+        <button type="button" class="btn btn-default" ng-click="dueMonth()">Due payments of the month</button>
+    </div>
+</div>

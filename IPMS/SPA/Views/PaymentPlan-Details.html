@@ -1,0 +1,78 @@
+﻿<div class="container">
+    <div class="row">
+        <h2>Installment Plan Details</h2>
+    </div>
+    <hr />
+    <form class="form-horizontal" id="InstallmentPlanDetailsForm">
+        <div class="form-group">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>Customer</label>
+                    <input class="form-control" type="text" ng-disabled="true" ng-model="plan.customer_name">
+
+                </div>
+                <div class="form-group">
+                    <label>Invoice No</label>
+                    <input class="form-control" type="text" ng-disabled="true" ng-model="plan.invoice_no">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>Total Plan Amount</label>
+                    <input class="form-control amount_input" type="text" ng-disabled="true" ng-model="plan.total_plan_amount">
+                    <span>{{ dueListLength }} installments</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>Total Paid</label>
+                    <input class="form-control amount_input" type="text" ng-disabled="true" ng-model="plan.total_paid">
+                    <span>{{ paid_num }} installments</span>
+                </div>
+                <div class="form-group">
+                    <label>Total Unpaid</label>
+                    <input class="form-control amount_input" type="text" ng-disabled="true" ng-model="plan.total_unpaid">
+                    <span>{{ unpaid_num}} installments</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>Device</label>
+                    <input class="form-control" type="text" ng-disabled="true" ng-model="plan.device_model">
+                </div>
+                
+            </div>
+        </div>
+    </form>
+    <hr />
+    <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="class=" table table-bordered hover">
+        <thead>
+            <tr>
+                <th>Due Date</th>
+                <th>Paid Date</th>
+                <th>Value</th>
+                <th>Paid Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in allDuePaidList">
+                <td>{{ item.due_date }}</td>
+                <td>{{ item.paid_date }}</td>
+                <td>{{ item.due_value }}</td>
+                <td>{{ item.paid_value }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button type="button" class="btn btn-default" style="width:100px;" ng-click="printPdf()">Print PDF</button>
+
+</div>
